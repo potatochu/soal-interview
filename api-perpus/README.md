@@ -1,4 +1,8 @@
 # REST API SOAL BACKEND #
+- Framework PHP Laravel
+- Auth Laravel Sanctum
+- Selain Register dan Login, menggunakan middleware auth
+  
 Dokumentasi lengkap untuk semua API yang telah dibuat, dengan detail contoh permintaan dan respons:
 1. Register User
 Endpoint: POST /api/register
