@@ -1,7 +1,16 @@
 # REST API SOAL BACKEND #
+## Spesifikasi ##
 - Framework PHP Laravel
 - Auth Laravel Sanctum
 - Selain Register dan Login, menggunakan middleware auth
+
+## Installation ##
+- clone repo
+- Run composer install.
+- Run cp .env.example .env.
+- Run php artisan key:generate.
+- Run php artisan migrate.
+- Run php artisan serve.
   
 Dokumentasi lengkap untuk semua API yang telah dibuat, dengan detail contoh permintaan dan respons:
 1. Register User
