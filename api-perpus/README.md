@@ -11,7 +11,8 @@
 - Run php artisan key:generate.
 - Run php artisan migrate.
 - Run php artisan serve.
-  
+
+## Dokumentasi API ##
 Dokumentasi lengkap untuk semua API yang telah dibuat, dengan detail contoh permintaan dan respons:
 1. Register User
 Endpoint: POST /api/register
