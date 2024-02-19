@@ -1,66 +1,284 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Berikut adalah dokumentasi lengkap untuk semua API yang telah dibuat, termasuk detail contoh permintaan dan respons:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1. Register User
+Endpoint: POST /api/register
+Deskripsi: Mendaftarkan pengguna baru ke dalam sistem.
+Contoh Permintaan:
+json
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password"
+}
 
-## About Laravel
+Contoh Respons (Status: 200 OK):
+json
+{
+    "user": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    },
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImEwNTMzOTNjZDEwZDk2NzQyMDA5N..."
+}
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2. Login User
+Endpoint: POST /api/login
+Deskripsi: Melakukan login pengguna ke dalam sistem.
+Contoh Permintaan:
+json
+{
+    "email": "john@example.com",
+    "password": "password"
+}
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Contoh Respons (Status: 200 OK):
+json
+{
+    "user": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    },
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImEwNTMzOTNjZDEwZDk2NzQyMDA5N..."
+}
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2.1. Penggunaan Akses Token
+Authorization: Bearer <access_token>
 
-## Learning Laravel
+3. Logout User
+Endpoint: POST /api/logout
+Deskripsi: Melakukan logout pengguna dari sistem. Memerlukan token akses.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "message": "Successfully logged out"
+}
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4. Daftar Kategori Buku
+Endpoint: GET /api/categories
+Deskripsi: Mengambil daftar semua kategori buku.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Fiction",
+            "created_at": "2024-02-17T12:00:00.000000Z",
+            "updated_at": "2024-02-17T12:00:00.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "Non-fiction",
+            "created_at": "2024-02-17T12:00:00.000000Z",
+            "updated_at": "2024-02-17T12:00:00.000000Z"
+        }
+    ]
+}
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+5. Detail Kategori Buku
+Endpoint: GET /api/categories/{id}
+Deskripsi: Mengambil detail suatu kategori buku berdasarkan ID.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "category": {
+        "id": 1,
+        "name": "Fiction",
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    }
+}
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+6. Buat Kategori Buku Baru
+Endpoint: POST /api/categories
+Deskripsi: Membuat kategori buku baru.
+Contoh Permintaan:
+json
+{
+    "name": "Fantasy"
+}
+Contoh Respons (Status: 201 Created):
+json
+{
+    "category": {
+        "id": 3,
+        "name": "Fantasy",
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    }
+}
 
-## Laravel Sponsors
+7. Update Kategori Buku
+Endpoint: PUT /api/categories/{id}
+Deskripsi: Memperbarui informasi suatu kategori buku berdasarkan ID.
+Contoh Permintaan:
+json
+{
+    "name": "Science Fiction"
+}
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Contoh Respons (Status: 200 OK):
+json
+{
+    "category": {
+        "id": 3,
+        "name": "Science Fiction",
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    }
+}
 
-### Premium Partners
+8. Hapus Kategori Buku
+Endpoint: DELETE /api/categories/{id}
+Deskripsi: Menghapus suatu kategori buku berdasarkan ID.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "message": "Category deleted successfully"
+}
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+9. Daftar Semua Buku
+Endpoint: GET /api/books
+Deskripsi: Mengambil daftar semua buku.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "books": [
+        {
+            "id": 1,
+            "title": "Book Title 1",
+            "author": "Author 1",
+            "category_id": 1,
+            "created_at": "2024-02-17T12:00:00.000000Z",
+            "updated_at": "2024-02-17T12:00:00.000000Z"
+        },
+        {
+            "id": 2,
+            "title": "Book Title 2",
+            "author": "Author 2",
+            "category_id": 2,
+            "created_at": "2024-02-17T12:00:00.000000Z",
+            "updated_at": "2024-02-17T12:00:00.000000Z"
+        }
+    ]
+}
 
-## Contributing
+10. Detail Buku
+Endpoint: GET /api/books/{id}
+Deskripsi: Mengambil detail suatu buku berdasarkan ID.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "book": {
+        "id": 1,
+        "title": "Book Title 1",
+        "author": "Author 1",
+        "category_id": 1,
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    }
+}
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+11. Tambah Buku Baru
+Endpoint: POST /api/books
+Deskripsi: Menambah buku baru.
+Contoh Permintaan:
+json
+{
+    "title": "New Book",
+    "author": "New Author",
+    "category_id": 1
+}
+Contoh Respons (Status: 201 Created):
+json
+{
+    "book": {
+        "id": 3,
+        "title": "New Book",
+        "author": "New Author",
+        "category_id": 1,
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    }
+}
 
-## Code of Conduct
+12. Update Buku
+Endpoint: PUT /api/books/{id}
+Deskripsi: Memperbarui informasi suatu buku berdasarkan ID.
+Contoh Permintaan:
+json
+{
+    "title": "Updated Book Title",
+    "author": "Updated Author Name",
+    "category_id": 2
+}
+Contoh Respons (Status: 200 OK):
+json
+{
+    "book": {
+        "id": 1,
+        "title": "Updated Book Title",
+        "author": "Updated Author Name",
+        "category_id": 2,
+        "created_at": "2024-02-17T12:00:00.000000Z",
+        "updated_at": "2024-02-17T12:00:00.000000Z"
+    }
+}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+13. Hapus Buku
+Endpoint: DELETE /api/books/{id}
+Deskripsi: Menghapus suatu buku berdasarkan ID.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "message": "Book deleted successfully"
+}
 
-## Security Vulnerabilities
+14. Pinjam Buku
+Endpoint: POST /api/books/{id}/borrow
+Deskripsi: Meminjam buku berdasarkan ID buku.
+Contoh Permintaan:
+json
+{
+    "user_id": 1
+}
+Contoh Respons (Status: 200 OK):
+json
+{
+    "message": "Book borrowed successfully"
+}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+15. Kembalikan Buku
+Endpoint: PUT /api/books/{id}/return
+Deskripsi: Mengembalikan buku berdasarkan ID buku.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "message": "Book returned successfully"
+}
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+16. Daftar Buku yang Dipinjam
+Endpoint: GET /api/borrowed-books
+Deskripsi: Mengambil daftar buku yang sedang dipinjam oleh pengguna yang sedang login.
+Contoh Respons (Status: 200 OK):
+json
+{
+    "borrowed_books": [
+        {
+            "id": 1,
+            "title": "Book Title 1",
+            "author": "Author 1",
+            "category_id": 1,
+            "borrow_date": "2024-02-17T12:00:00.000000Z",
+            "return_date": "2024-02-24T12:00:00.000000Z",
+            "created_at": "2024-02-17T12:00:00.000000Z",
+            "updated_at": "2024-02-17T12:00:00.000000Z"
+        }
+    ]
+}
