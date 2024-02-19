@@ -31,11 +31,10 @@ Endpoint: POST /api/login
 Deskripsi: Melakukan login pengguna ke dalam sistem.
 Contoh Permintaan:
 json
-
-    {
-        "email": "john@example.com",
-        "password": "password"
-    }
+>     {
+>         "email": "john@example.com",
+>         "password": "password"
+>     }
 
 Contoh Respons (Status: 200 OK):
 json
